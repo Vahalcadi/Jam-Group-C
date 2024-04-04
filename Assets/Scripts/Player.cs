@@ -51,6 +51,13 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(ClampVelocityAxis(true), rb.velocity.y, ClampVelocityAxis(false));
     }
 
+
+    /**
+     * 
+     * if no movement inputs are registered, player will stop immediately
+     * this prevents the player from slipping
+     * 
+     * **/
     private void StopMovement()
     {
         if (movement == Vector2.zero && IsGroundDetected())
@@ -77,6 +84,13 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(ClampVelocityAxis(true), rb.velocity.y, ClampVelocityAxis(false));
     }
 
+
+    /**
+     * 
+     * Clamps the current velocity to the max velocity,
+     * this ensures a constant movement speed 
+     * 
+     * **/
     private float ClampVelocityAxis(bool isX)
     {
         float currentMaxVelocity = maxVelocity;
@@ -113,6 +127,9 @@ public class Player : MonoBehaviour
          * 
          * GetJump() function returns true if the button bound to jump is pressed
          * IsGroundDetected() fuction returns true when the raycast line, that starts from player, touches the ground
+         * 
+         * 
+         * if both are true, the player will be launched into the air
          * 
          * **/
 
