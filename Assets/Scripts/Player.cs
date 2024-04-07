@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
-    [SerializeField] private float maxVelocity;
-    private Vector2 movement;
+    //[SerializeField] private float maxVelocity;
+    //private Vector2 movement;
 
     [Header("Collision info")]
     [SerializeField] protected Transform groundCheck;
@@ -28,16 +28,16 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Jump();
-        Movement();
-        MoveLeftRight();
-        StopMovement();
+        MoveFwdBwd();
+        //MoveLeftRight();
+        //StopMovement();
         CrossairMovement();
     }
 
 
-    void Movement()
+    void MoveFwdBwd()
     {
-        //Get value of x and y from input using Input Action component
+        /*//Get value of x and y from input using Input Action component
         movement = inputManager.GetMovement();     
 
         if (movement.y != 0)
@@ -48,7 +48,15 @@ public class Player : MonoBehaviour
             rb.AddForce(transform.forward * finalSpeed * Time.deltaTime);
         }
 
-        rb.velocity = new Vector3(ClampVelocityAxis(true), rb.velocity.y, ClampVelocityAxis(false));
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, ClampVelocityAxis(false));
+       */
+
+        Debug.DrawLine(transform.position, transform.forward * 500, Color.black);
+
+        Vector3 movemvent3d = new Vector3(inputManager.GetMovement().x, 0, inputManager.GetMovement().y);
+
+        Vector3 MoveVector = transform.TransformDirection(movemvent3d) * speed;
+        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
     }
 
 
@@ -58,52 +66,52 @@ public class Player : MonoBehaviour
      * this prevents the player from slipping
      * 
      * **/
-    private void StopMovement()
-    {
-        if (movement == Vector2.zero && IsGroundDetected())
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.angularDrag = 0;
-        }
-    }
+    //private void StopMovement()
+    //{
+    //    if (movement == Vector2.zero && IsGroundDetected())
+    //    {
+    //        rb.velocity = Vector3.zero;
+    //        rb.angularVelocity = Vector3.zero;
+    //        rb.angularDrag = 0;
+    //    }
+    //}
 
-    void MoveLeftRight()
-    {
-        movement = inputManager.GetMovement();
-
-
-        if (movement.x != 0)
-        {
-            float finalSpeed = movement.x * speed;
-
-            //Move player
-            rb.AddForce(transform.right * finalSpeed * Time.deltaTime);
-        }
-
-        rb.velocity = new Vector3(ClampVelocityAxis(true), rb.velocity.y, ClampVelocityAxis(false));
-    }
+    //void MoveLeftRight()
+    //{
+    //    movement = inputManager.GetMovement();
 
 
-    /**
-     * 
-     * Clamps the current velocity to the max velocity,
-     * this ensures a constant movement speed 
-     * 
-     * **/
-    private float ClampVelocityAxis(bool isX)
-    {
-        float currentMaxVelocity = maxVelocity;
-        float speed;
+    //    if (movement.x != 0)
+    //    {
+    //        float finalSpeed = movement.x * speed;
 
-        if (isX)
-            speed = Mathf.Clamp(rb.velocity.x, -maxVelocity, maxVelocity);
-        else
-            speed = Mathf.Clamp(rb.velocity.z, -maxVelocity, maxVelocity);
+    //        //Move player
+    //        rb.AddForce(transform.right * finalSpeed * Time.deltaTime);
+    //    }
 
-        maxVelocity = currentMaxVelocity;
-        return speed;
-    }
+    //    rb.velocity = new Vector3(ClampVelocityAxis(true), rb.velocity.y, ClampVelocityAxis(false));
+    //}
+
+
+    ///**
+    // * 
+    // * Clamps the current velocity to the max velocity,
+    // * this ensures a constant movement speed 
+    // * 
+    // * **/
+    //private float ClampVelocityAxis(bool isX)
+    //{
+    //    float currentMaxVelocity = maxVelocity;
+    //    float speed;
+
+    //    if (isX)
+    //        speed = Mathf.Clamp(rb.velocity.x, -maxVelocity, maxVelocity);
+    //    else
+    //        speed = Mathf.Clamp(rb.velocity.z, -maxVelocity, maxVelocity);
+
+    //    maxVelocity = currentMaxVelocity;
+    //    return speed;
+    //}
 
     public void CrossairMovement()
     {
