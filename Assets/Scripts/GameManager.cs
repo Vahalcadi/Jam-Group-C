@@ -1,10 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private List<GameObject> rooms;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            rooms[0].SetActive(!rooms[0].activeSelf);
+            rooms[1].SetActive(!rooms[1].activeSelf);
+        }
     }
 }
