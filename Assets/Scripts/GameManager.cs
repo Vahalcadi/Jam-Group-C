@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-    [SerializeField] private List<GameObject> rooms;
-    private List<int> extractedRooms = new();
     private int random;
 
     public static GameManager Instance;
@@ -22,19 +19,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        ShowNewRoom();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetKeyUp(KeyCode.K))
-        //{
-        //    ShowNewRoom();
-        //}
-    }
 
-    public void ShowNewRoom()
+    public void ShowNewRoom(List<GameObject> rooms, ref List<int> extractedRooms)
     {
 
         if (rooms.Count == extractedRooms.Count)
@@ -48,16 +36,17 @@ public class GameManager : MonoBehaviour
         {    
             rooms[i].SetActive(false);
         }
-        CheckExtractedRooms();
+        CheckExtractedRooms(rooms, ref extractedRooms);
         rooms[random].SetActive(true);
+        Debug.Log("Room changed");
     }
 
-    private void CheckExtractedRooms()
+    private void CheckExtractedRooms(List<GameObject> rooms, ref List<int> extractedRooms)
     {        
         random = UnityEngine.Random.Range(0, rooms.Count);
         if (extractedRooms.Contains(random))
         {
-            CheckExtractedRooms();
+            CheckExtractedRooms(rooms, ref extractedRooms);
         }
         else
             extractedRooms.Add(random);

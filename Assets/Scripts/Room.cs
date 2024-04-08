@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> rooms;
+    private List<int> extractedRooms = new();
     private bool pickupFound;
+
+    private void Start()
+    {
+        GameManager.Instance.ShowNewRoom(rooms, ref extractedRooms);
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,8 +27,7 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player") && pickupFound)
         {
-            GameManager.Instance.ShowNewRoom();
-            Debug.Log("Room changed");
+            GameManager.Instance.ShowNewRoom(rooms, ref extractedRooms); 
         }
     }
 }
