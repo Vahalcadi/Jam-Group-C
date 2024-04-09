@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,5 +51,45 @@ public class GameManager : MonoBehaviour
         }
         else
             extractedRooms.Add(random);
+    }
+
+    public void RestartGame(string dialog)
+    {
+        PauseGame(true);
+
+        QuestionDialogUI.Instance.ShowQuestion(dialog,
+            () =>
+            {
+                PauseGame(false);
+                SceneManager.LoadScene(GameMenu.Instance.sceneName);
+            },
+            () =>
+            {
+                QuestionDialogUI.Instance.ShowQuestion("This will close the game, are you sure?",
+                    () =>
+                    {
+                        Application.Quit();
+                    },
+                    () =>
+                    {
+                        RestartGame(dialog);
+                    });
+            });
+    }
+
+    public virtual void PauseGame(bool _pause)
+    {
+        if (_pause)
+        {
+            Time.timeScale = 0;
+            InputManager.Instance.OnDisable();
+            Cursor.visible = true;
+        }
+        else
+        {
+            InputManager.Instance.OnEnable();
+            Time.timeScale = 1;
+            Cursor.visible = false;
+        }
     }
 }
