@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             () =>
             {
                 PauseGame(false);
-                SceneManager.LoadScene(GameMenu.Instance.sceneName);
+                SceneManager.LoadScene(GameMenu.Instance.currentSceneName);
             },
             () =>
             {

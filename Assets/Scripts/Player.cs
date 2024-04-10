@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
+    private bool isCrouching;
     //[SerializeField] private float maxVelocity;
     //private Vector2 movement;
 
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance = 1;
     [SerializeField] protected LayerMask whatIsGround;
+
+    [Header("Animations")]
+    [SerializeField] private Animator anim;
 
     [Header("Crossair movement")]
     [SerializeField] private CinemachinePOVExtention virtualCamera;
@@ -28,14 +32,14 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Jump();
-        MoveFwdBwd();
+        Movement();
         //MoveLeftRight();
         //StopMovement();
         CrossairMovement();
     }
 
 
-    void MoveFwdBwd()
+    void Movement()
     {
         /*//Get value of x and y from input using Input Action component
         movement = inputManager.GetMovement();     
@@ -50,6 +54,19 @@ public class Player : MonoBehaviour
 
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, ClampVelocityAxis(false));
        */
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && IsGroundDetected())
+        {
+            if (isCrouching)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y * 2, transform.position.z);
+            }
+            else
+                transform.position = new Vector3(transform.position.x, transform.position.y / 2, transform.position.z);
+
+            isCrouching = !isCrouching;
+            anim.SetBool("crouching", isCrouching);
+        }
 
         Debug.DrawLine(transform.position, transform.forward * 500, Color.black);
 
@@ -145,6 +162,12 @@ public class Player : MonoBehaviour
         {
             Debug.Log("JUMPED");
             rb.AddForce(rb.velocity + Vector3.up * jumpForce, ForceMode.VelocityChange);
+
+            if (isCrouching)
+            {
+                isCrouching = false;
+                anim.SetBool("crouching", isCrouching);
+            }
 
         }
     }

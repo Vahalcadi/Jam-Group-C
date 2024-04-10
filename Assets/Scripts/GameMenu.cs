@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject inGameUI;
-    [SerializeField] private GameObject restartGameUI;
-    [SerializeField] private GameObject pauseGameUI;
+    [SerializeField] private GameObject pauseMenu;
+    
     [SerializeField] private GameObject playerControlsUI;
     [SerializeField] private GameObject customiseGameSettingsUI;
-    public string sceneName;
+    [HideInInspector] public string currentSceneName;
+    public string mainMenuSceneName;
     public static GameMenu Instance;
 
     private void Awake()
@@ -23,25 +24,18 @@ public class GameMenu : MonoBehaviour
 
     private void Start()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SwitchWithKeyTo(restartGameUI);
+            SwitchWithKeyTo(pauseMenu);
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
-        if (Input.GetKeyDown(KeyCode.F3))
-            SwitchWithKeyTo(pauseGameUI);
-
-        if (Input.GetKeyDown(KeyCode.F8))
-            SwitchWithKeyTo(playerControlsUI);
-
-        if (Input.GetKeyDown(KeyCode.F9))
-            SwitchWithKeyTo(customiseGameSettingsUI);
     }
 
     public void SwitchWithKeyTo(GameObject _menu)
@@ -92,6 +86,13 @@ public class GameMenu : MonoBehaviour
         }
     }
 
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(mainMenuSceneName);
+       // Debug.Log("To Main Menu (implementing)");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
@@ -104,8 +105,8 @@ public class GameMenu : MonoBehaviour
             () =>
             {
                 Time.timeScale = 1.0f;
-                restartGameUI.SetActive(false);
-                SceneManager.LoadScene(sceneName);
+                //restartGameUI.SetActive(false);
+                SceneManager.LoadScene(currentSceneName);
             },
             () =>
             {
