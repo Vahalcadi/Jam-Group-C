@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: b67b869e86f423845979220c67669a12
   - enabled: 1
-    path: Assets/Scenes/Programmers.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/Scenes/BlockOutStanza.unity
     guid: 61c069d5155d4af44bb118e05ec452e0
+  - enabled: 0
+    path: Assets/Scenes/Programmers.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
