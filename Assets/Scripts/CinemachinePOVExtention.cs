@@ -1,6 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CinemachinePOVExtention : CinemachineExtension
@@ -8,9 +6,19 @@ public class CinemachinePOVExtention : CinemachineExtension
     [SerializeField] private float clampAngle;
     public float aimSensitivity;
     private Vector3 startingRotation;
+    public Vector3 StartingRotation { get { return startingRotation; } }
+
+    public static CinemachinePOVExtention Instance;
 
     protected override void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
+        else
+            Instance = this;
+
         startingRotation = transform.localRotation.eulerAngles;
         base.Awake();
     }
@@ -19,7 +27,7 @@ public class CinemachinePOVExtention : CinemachineExtension
     {
         if (vcam.Follow)
         {
-            if(stage == CinemachineCore.Stage.Aim)
+            if (stage == CinemachineCore.Stage.Aim)
             {
                 float mouseX = InputManager.Instance.GetLookPosition().normalized.x * aimSensitivity * Time.deltaTime;
                 float mouseY = -InputManager.Instance.GetLookPosition().normalized.y * aimSensitivity * Time.deltaTime;

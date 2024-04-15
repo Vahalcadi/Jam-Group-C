@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,12 +20,11 @@ public class Player : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private Animator anim;
 
-    [Header("Crossair movement")]
-    [SerializeField] private CinemachinePOVExtention virtualCamera;
-
     private void Start()
     {
         inputManager = InputManager.Instance;
+
+        transform.localRotation = Quaternion.Euler(0, CinemachinePOVExtention.Instance.StartingRotation.y, 0);
     }
 
     private void Update()
@@ -140,9 +138,10 @@ public class Player : MonoBehaviour
          * 
          * **/
 
-        float mouseX = inputManager.GetLookPosition().normalized.x * virtualCamera.aimSensitivity * Time.deltaTime;
+        //float mouseX = inputManager.GetLookPosition().normalized.x * CinemachinePOVExtention.Instance.aimSensitivity * Time.deltaTime;
 
-        transform.Rotate(new Vector3(transform.rotation.x, mouseX, transform.rotation.z));
+        transform.localRotation = Quaternion.Euler(0, CinemachinePOVExtention.Instance.StartingRotation.y, 0);
+
         //virtualCamera.transform.Rotate(new Vector3(mouseY, transform.rotation.y, transform.rotation.z));
     }
 
