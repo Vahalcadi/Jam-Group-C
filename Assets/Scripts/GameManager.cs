@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-
     public void ShowNewRoom(List<GameObject> rooms, ref List<int> extractedRooms)
     {
 

@@ -8,6 +8,8 @@ public class Room : MonoBehaviour
     private List<int> extractedRooms = new();
     private bool pickupFound;
 
+    [SerializeField] private Animator door;
+
     private void Start()
     {
         GameManager.Instance.ShowNewRoom(rooms, ref extractedRooms);
@@ -23,11 +25,19 @@ public class Room : MonoBehaviour
         }
     }
 
+    public IEnumerator GenerateNewRoom()
+    {
+        pickupFound = false;
+        Door.anim.SetBool("isOpen", false);
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.ShowNewRoom(rooms, ref extractedRooms);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") && pickupFound)
         {
-            GameManager.Instance.ShowNewRoom(rooms, ref extractedRooms); 
+            StartCoroutine(GenerateNewRoom());
         }
     }
 }

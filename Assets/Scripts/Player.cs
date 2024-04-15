@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
             anim.SetBool("crouching", isCrouching);
         }
 
-        Debug.DrawLine(transform.position, transform.forward * 500, Color.black);
+        Debug.DrawLine(transform.position, transform.forward.normalized * 500, Color.black);
 
         Vector3 movemvent3d = new Vector3(inputManager.GetMovement().x, 0, inputManager.GetMovement().y);
 

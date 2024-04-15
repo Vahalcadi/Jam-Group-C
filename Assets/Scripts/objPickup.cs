@@ -6,30 +6,31 @@ public class objPickup : MonoBehaviour
 {
     public GameObject crosshair1, crosshair2;
     public Transform objTransform, cameraTrans;
-    public bool interactable, pickedup;
+    [HideInInspector] public bool interactable, pickedup;
     public Rigidbody objRigidbody;
     public float throwAmount;
 
-    void OnTriggerStay(Collider other)
+
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MainCamera"))
+        if (other.CompareTag("InteractableCollider"))
         {
             crosshair1.SetActive(false);
             crosshair2.SetActive(true);
             interactable = true;
         }
     }
-    void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MainCamera"))
+        if (other.CompareTag("InteractableCollider"))
         {
-            if (pickedup == false)
+            if (pickedup)
             {
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
                 interactable = false;
             }
-            if (pickedup == true)
+            if (pickedup)
             {
                 objTransform.parent = null;
                 objRigidbody.useGravity = true;
@@ -40,9 +41,9 @@ public class objPickup : MonoBehaviour
             }
         }
     }
-    void Update()
+    protected virtual void Update()
     {
-        if (interactable == true)
+        if (interactable)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -56,7 +57,7 @@ public class objPickup : MonoBehaviour
                 objRigidbody.useGravity = true;
                 pickedup = false;
             }
-            if (pickedup == true)
+            if (pickedup)
             {
                 if (Input.GetMouseButtonDown(1))
                 {                  
