@@ -12,7 +12,12 @@ public class Door : objPickup
 
     protected override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
+        if (other.CompareTag("InteractableCollider"))
+        {
+            crosshair1.SetActive(false);
+            crosshair2.SetActive(true);
+            interactable = true;
+        }
     }
 
     protected override void OnTriggerExit(Collider other)

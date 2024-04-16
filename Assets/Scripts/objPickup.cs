@@ -13,7 +13,7 @@ public class objPickup : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("InteractableCollider"))
+        if (other.CompareTag("MainCamera"))
         {
             crosshair1.SetActive(false);
             crosshair2.SetActive(true);
@@ -22,22 +22,24 @@ public class objPickup : MonoBehaviour
     }
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("InteractableCollider"))
+        if (other.CompareTag("MainCamera"))
         {
             if (pickedup)
             {
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
-                interactable = false;
-            }
-            if (pickedup)
-            {
                 objTransform.parent = null;
                 objRigidbody.useGravity = true;
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
                 interactable = false;
                 pickedup = false;
+            }
+            else
+            {
+                crosshair1.SetActive(true);
+                crosshair2.SetActive(false);
+                interactable = false;
             }
         }
     }
