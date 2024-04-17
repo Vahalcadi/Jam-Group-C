@@ -6,7 +6,7 @@ public class MenuScript : MonoBehaviour
 {
     [SerializeField] private string sceneName = "TestLevel";
     //[SerializeField] private GameObject leaderboardUI;
-    [SerializeField] private GameObject howToPlayUI;
+    [SerializeField] private GameObject optionsUI;
     [SerializeField] private GameObject creditsUI;
     [SerializeField] private GameObject MainUI;
 
