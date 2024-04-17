@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -30,6 +31,26 @@ public class InputManager : MonoBehaviour
     public bool GetJump()
     {
         return playerControls.Player.Jump.triggered;
+    }
+
+    public bool GetCrouch()
+    {
+        return playerControls.Player.Crouch.triggered;
+    }
+
+    public bool GetGrabObject()
+    {
+        return playerControls.Player.GrabObjects.triggered;
+    }
+
+    public bool GetThrowObject()
+    {
+        return playerControls.Player.ThrowObjects.triggered;
+    }
+
+    public bool GetInteract()
+    {
+        return playerControls.Player.Interact.triggered;
     }
 
     public void OnEnable()

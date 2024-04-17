@@ -31,7 +31,7 @@ public class Door : objPickup
     {
         if(interactable && !hasAnimationStarted)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (InputManager.Instance.GetInteract())
             {
                 Debug.LogWarning(interactable);
                 if (isOpen)

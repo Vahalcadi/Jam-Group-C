@@ -47,13 +47,13 @@ public class objPickup : MonoBehaviour
     {
         if (interactable)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputManager.Instance.GetGrabObject())
             {
                 objTransform.parent = cameraTrans;
                 objRigidbody.useGravity = false;
                 pickedup = true;
             }
-            if (Input.GetMouseButtonUp(0))
+            if (InputManager.Instance.GetGrabObject())
             {
                 objTransform.parent = null;
                 objRigidbody.useGravity = true;
