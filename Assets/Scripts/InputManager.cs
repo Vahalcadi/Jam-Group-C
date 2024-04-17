@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
 
     public bool GetGrabObject()
     {
-        return playerControls.Player.GrabObjects.triggered;
+        return playerControls.Player.GrabObjects.IsPressed();
     }
 
     public bool GetThrowObject()

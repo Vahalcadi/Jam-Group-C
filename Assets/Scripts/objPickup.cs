@@ -51,23 +51,25 @@ public class objPickup : MonoBehaviour
             {
                 objTransform.parent = cameraTrans;
                 objRigidbody.useGravity = false;
+                objRigidbody.velocity = Vector3.zero;
+                objRigidbody.angularDrag = 0;
+                objRigidbody.angularVelocity = Vector3.zero;
                 pickedup = true;
             }
-            if (InputManager.Instance.GetGrabObject())
+            if (!InputManager.Instance.GetGrabObject() && pickedup)
             {
                 objTransform.parent = null;
                 objRigidbody.useGravity = true;
                 pickedup = false;
             }
-            if (pickedup)
+            if (InputManager.Instance.GetThrowObject() && pickedup)
             {
-                if (Input.GetMouseButtonDown(1))
-                {                  
-                    objTransform.parent = null;
-                    objRigidbody.useGravity = true;
-                    objRigidbody.velocity = cameraTrans.forward * throwAmount * Time.deltaTime;
-                    pickedup = false;
-                }
+                pickedup = false;
+                objTransform.parent = null;
+                objRigidbody.useGravity = true;
+                objRigidbody.velocity = cameraTrans.forward * throwAmount * Time.deltaTime;
+                interactable = false;
+                
             }
         }
     }

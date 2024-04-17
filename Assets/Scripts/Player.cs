@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, ClampVelocityAxis(false));
        */
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && IsGroundDetected())
+        if (inputManager.GetCrouch() && IsGroundDetected())
         {
             if (isCrouching)
             {

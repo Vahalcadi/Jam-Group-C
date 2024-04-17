@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5335106099019820912}
   - component: {fileID: 6805702375123982036}
   - component: {fileID: 2200310979706768547}
-  - component: {fileID: 3872447949430055308}
-  - component: {fileID: 7755960217441041512}
   - component: {fileID: 5499131034949690637}
+  - component: {fileID: 7840789740047586107}
+  - component: {fileID: 6360224906156425289}
+  - component: {fileID: 4833062572984329759}
   m_Layer: 6
   m_Name: Chair (1)
   m_TagString: Untagged
@@ -115,7 +116,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3872447949430055308
+--- !u!65 &5499131034949690637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367323970368674704}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.728171, y: 7.2228675, z: 5.348139}
+  m_Center: {x: -1.8641123, y: 2.6114266, z: 2.0994275}
+--- !u!114 &7840789740047586107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +155,9 @@ MonoBehaviour:
   cameraTrans: {fileID: 0}
   interactable: 0
   pickedup: 0
-  objRigidbody: {fileID: 7755960217441041512}
+  objRigidbody: {fileID: 6360224906156425289}
   throwAmount: 350
---- !u!54 &7755960217441041512
+--- !u!54 &6360224906156425289
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +184,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5499131034949690637
+--- !u!65 &4833062572984329759
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,12 +199,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.728171, y: 7.2228675, z: 5.348139}
-  m_Center: {x: -1.8641123, y: 2.6114266, z: 2.0994275}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: -0.0000076293945, y: -0.0000020861626, z: 0.0000038146973}
 --- !u!1 &6695785987008319965
 GameObject:
   m_ObjectHideFlags: 0
