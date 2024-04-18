@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.289005
+      value: 16.03123
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 81.23492
+      value: -0.40105915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.094051
+      value: -17.609604
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
@@ -61,10 +61,41 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e48375f43be27054b94c04fb3fb72879,
         type: 3}
       propertyPath: m_Name
-      value: SM_Wood_Chandelier_A
+      value: PF_Wood_Chandelier_A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e48375f43be27054b94c04fb3fb72879,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5460809968799289451}
   m_SourcePrefab: {fileID: 100100000, guid: e48375f43be27054b94c04fb3fb72879, type: 3}
+--- !u!1 &2591285150113920655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e48375f43be27054b94c04fb3fb72879,
+    type: 3}
+  m_PrefabInstance: {fileID: 3402313166641023966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5460809968799289451
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591285150113920655}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.20453545, y: 0.89741117, z: 0.20453545}
+  m_Center: {x: 0, y: 0.44870558, z: 0}

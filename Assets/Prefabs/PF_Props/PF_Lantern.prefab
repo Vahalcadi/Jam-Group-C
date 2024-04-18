@@ -11,32 +11,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.081745
+      value: 2.97678
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 80.993675
+      value: -0.58232594
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.273476
+      value: -14.194847
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.43159845
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.9020659
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -128.862
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
@@ -61,10 +61,41 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a1bfbef36adeeda41bdacec111942589,
         type: 3}
       propertyPath: m_Name
-      value: SM_Lantern
+      value: PF_Lantern
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1bfbef36adeeda41bdacec111942589,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6521202275894023759}
   m_SourcePrefab: {fileID: 100100000, guid: a1bfbef36adeeda41bdacec111942589, type: 3}
+--- !u!1 &5333149532877664207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1bfbef36adeeda41bdacec111942589,
+    type: 3}
+  m_PrefabInstance: {fileID: 5098724519044682398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6521202275894023759
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5333149532877664207}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29640922, y: 0.84921044, z: 0.27045628}
+  m_Center: {x: -0.0000009536743, y: 0.40225032, z: -0.0000027418137}
