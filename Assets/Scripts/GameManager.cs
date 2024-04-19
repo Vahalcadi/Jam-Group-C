@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private int random;
+    private int numberOfPickedUpDwarfs = 0;
+    private bool pickupFound;
+
+    public bool PickupFound { get { return pickupFound; } }
 
     public static GameManager Instance;
 
@@ -17,17 +21,14 @@ public class GameManager : MonoBehaviour
             Instance = this;
     }
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     public void ShowNewRoom(List<GameObject> rooms, ref List<int> extractedRooms)
     {
+        pickupFound = false;
 
         if (rooms.Count == extractedRooms.Count)
         {
-            Debug.Log("All rooms extracted");
+            RestartGame("ALL DWARFS FOUND!, PLAY AGAIN?");
             return;
         }
             
@@ -90,5 +91,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             Cursor.visible = false;
         }
+    }
+
+    public void PickUpDwarf(GameObject dwarf)
+    {
+        dwarf.SetActive(false);
+        numberOfPickedUpDwarfs++;
+        GameMenu.Instance.dwarfCounter.text = $"{numberOfPickedUpDwarfs}";
+        pickupFound = true;
     }
 }

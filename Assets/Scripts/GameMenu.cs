@@ -14,6 +14,9 @@ public class GameMenu : MonoBehaviour
     public string mainMenuSceneName;
     public static GameMenu Instance;
 
+    public TextMeshProUGUI dwarfCounter;
+    [SerializeField] private Image xAxisCheckmark;
+    [SerializeField] private Image yAxisCheckmark;
     private void Awake()
     {
         if (Instance != null)
@@ -25,6 +28,7 @@ public class GameMenu : MonoBehaviour
     private void Start()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
+        dwarfCounter.text = "0";
     }
 
     void Update()
@@ -33,7 +37,7 @@ public class GameMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SwitchWithKeyTo(pauseMenu);
-            Cursor.lockState = CursorLockMode.Confined;
+            
         }
 
     }
@@ -54,6 +58,7 @@ public class GameMenu : MonoBehaviour
 
     private void CheckForInGameUI()
     {
+        
         SwitchTo(inGameUI);
     }
 
@@ -88,9 +93,19 @@ public class GameMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1.0f;
-        SceneManager.LoadScene(mainMenuSceneName);
-       // Debug.Log("To Main Menu (implementing)");
+        QuestionDialogUI.Instance.ShowQuestion("YOU WILL LOSE ALL YOUR PROGRESS, ARE YOU SURE?",
+            () =>
+            {
+                Time.timeScale = 1.0f;
+                //restartGameUI.SetActive(false);
+                SceneManager.LoadScene(mainMenuSceneName);
+            },
+            () =>
+            {
+                SwitchWithKeyTo(inGameUI);
+            });
+
+        // Debug.Log("To Main Menu (implementing)");
     }
 
     public void ExitGame()
@@ -98,19 +113,15 @@ public class GameMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void RestartGame()
+    public void InvertAxisX()
     {
-
-        QuestionDialogUI.Instance.ShowQuestion("This action will restart the game, are you sure?",
-            () =>
-            {
-                Time.timeScale = 1.0f;
-                //restartGameUI.SetActive(false);
-                SceneManager.LoadScene(currentSceneName);
-            },
-            () =>
-            {
-                SwitchWithKeyTo(inGameUI);
-            });
+        CinemachinePOVExtention.Instance.InvertX();
+        xAxisCheckmark.gameObject.SetActive(!xAxisCheckmark.gameObject.activeSelf);
     }
+    public void InvertAxisY() 
+    { 
+        CinemachinePOVExtention.Instance.InvertY();
+        yAxisCheckmark.gameObject.SetActive(!yAxisCheckmark.gameObject.activeSelf);
+    }
+    public void SetSensitivity(float _value) => CinemachinePOVExtention.Instance.SliderValue(_value);
 }

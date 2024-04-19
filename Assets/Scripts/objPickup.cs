@@ -10,6 +10,12 @@ public class objPickup : MonoBehaviour
     public Rigidbody objRigidbody;
     public float throwAmount;
 
+    private GameObject previousParent;
+
+    private void Start()
+    {
+        previousParent = objTransform.parent.gameObject;
+    }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -28,7 +34,7 @@ public class objPickup : MonoBehaviour
             {
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
-                objTransform.parent = null;
+                objTransform.parent = previousParent.transform;
                 objRigidbody.useGravity = true;
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
@@ -37,6 +43,7 @@ public class objPickup : MonoBehaviour
             }
             else
             {
+
                 crosshair1.SetActive(true);
                 crosshair2.SetActive(false);
                 interactable = false;
@@ -58,14 +65,14 @@ public class objPickup : MonoBehaviour
             }
             if (!InputManager.Instance.GetGrabObject() && pickedup)
             {
-                objTransform.parent = null;
+                objTransform.parent = previousParent.transform;
                 objRigidbody.useGravity = true;
                 pickedup = false;
             }
             if (InputManager.Instance.GetThrowObject() && pickedup)
             {
                 pickedup = false;
-                objTransform.parent = null;
+                objTransform.parent = previousParent.transform;
                 objRigidbody.useGravity = true;
                 objRigidbody.velocity = cameraTrans.forward * throwAmount * Time.deltaTime;
                 interactable = false;
